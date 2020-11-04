@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul>
+        {% for object in object_list %}
+        <li><b>{{object.0}}</b> <a href="{{object.0.url_ricetta}}">{{object.0.url_ricetta}}</a></li>
+        <ul>
+            {% for link_ingrediente in object.1%}
+                <li>{{ link_ingrediente.ingrediente.nome }} - {{ link_ingrediente.quantita }} {{ link_ingrediente.ingrediente.unita_misura }}</li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </ul>
+</body>
+</html>
