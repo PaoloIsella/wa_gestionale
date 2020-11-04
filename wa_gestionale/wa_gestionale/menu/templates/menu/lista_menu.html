@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "menu/base.html" %}
+{% block head_title %}Lista Menu{% endblock head_title %}
+
+{% block content %}
     <ul>
         {% for object in object_list %}
             <li><b><a href="dettaglio_menu/{{object.pk}}/">{{ object.nome }}</a></b></li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock content %}

@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <ul>
+{% extends "menu/base.html" %}
+{% block head_title %}Lista Menu{% endblock head_title %}
+
+{% block content %}
+   <ul>
         {% for object in object_list %}
         <li><b>{{object.0}}</b> <a href="{{object.0.url_ricetta}}">{{object.0.url_ricetta}}</a></li>
         <ul>
@@ -15,5 +12,4 @@
         </ul>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock content %}
