@@ -7,4 +7,35 @@
             <li>{{object.nome}} - {{object.euro_kg}} euro/kg</li>
         {% endfor %}
     </ul>
+    <form id="aggiungi_ingrediente_form" method="post">
+    {% csrf_token %}
+      <div class="form-group">
+        <label for="nome_ingrediente">Nome Ingrediente</label>
+        <input type="text" class="form-control" id="nome_ingrediente" aria-describedby="emailHelp" placeholder="inserisci nome ingrediente">
+        <small id="nome_ingrediente_help" class="form-text text-muted">Il nome dell'ingrediente deve essere univoco</small>
+      </div>
+      <div class="form-group">
+        <label for="prezzo">Prezzo</label>
+        <input type="number" class="form-control" id="prezzo" placeholder="prezzo">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
 {% endblock content %}
+
+{% block js %}
+    $(document).ready(function(){
+    alert("qwe")
+        $("aggiungi_ingrediente_form").submit(function(){
+            $.post("/test_ajax",
+            {
+                name: "Donald Duck",
+                city: "Duckburg",
+                csrfmiddlewaretoken: CSRFtoken
+            },
+            function(data, status){
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+    });
+{% endblock js %}
