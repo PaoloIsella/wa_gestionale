@@ -24,10 +24,3 @@ def lista_piatti(req: HttpRequest):
         'object_list': l,
     }
     return render(req, 'menu/lista_piatti.html', context=context)
-
-
-def dettaglio_menu(req : HttpRequest, id):
-    menu = Menu.objects.filter(pk=id).first()
-    lista_piatti = PiattoMenu.objects.filter(menu=menu)
-    context = {'menu': menu, 'lista_piatti': lista_piatti}
-    return render(req, 'menu/dettaglio_menu.html', context=context)
