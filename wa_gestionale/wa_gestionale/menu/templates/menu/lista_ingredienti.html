@@ -1,41 +1,48 @@
-{% extends "menu/base.html" %}
+{% extends "base.html" %}
+
 {% block head_title %}Lista Ingredienti{% endblock head_title %}
 
-{% block content %}
-    <ul>
+{% block javascript_content %}
+<script>
+    $(document).ready(function () {
+        //..
+        $("#formAdd").submit(function ()
+        {
+            var fields = {};
+            $("#formAdd").find(":input").each(function () {
+                if (this.name != "")
+                {
+                    fields[this.name] = $(this).val();
+                }
+            });
+            $.post(
+                "addIngrediente/", 
+                fields,
+                function (data, status)
+                {
+                    $("#log").text(data);
+                }); 
+            return false;
+        });
+    });
+</script>
+{% endblock javascript_content%}
+
+{% block page_content %}
+    <ul id="lista_ingredienti">
         {% for object in object_list %}
             <li>{{object.nome}} - {{object.euro_kg}} euro/kg</li>
         {% endfor %}
     </ul>
-    <form id="aggiungi_ingrediente_form" method="post">
-    {% csrf_token %}
-      <div class="form-group">
-        <label for="nome_ingrediente">Nome Ingrediente</label>
-        <input type="text" class="form-control" id="nome_ingrediente" aria-describedby="emailHelp" placeholder="inserisci nome ingrediente">
-        <small id="nome_ingrediente_help" class="form-text text-muted">Il nome dell'ingrediente deve essere univoco</small>
-      </div>
-      <div class="form-group">
-        <label for="prezzo">Prezzo</label>
-        <input type="number" class="form-control" id="prezzo" placeholder="prezzo">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-{% endblock content %}
-
-{% block js %}
-    $(document).ready(function(){
-    alert("qwe")
-        $("aggiungi_ingrediente_form").submit(function(){
-            $.post("/test_ajax",
-            {
-                name: "Donald Duck",
-                city: "Duckburg",
-                csrfmiddlewaretoken: CSRFtoken
-            },
-            function(data, status){
-                alert("Data: " + data + "\nStatus: " + status);
-            });
-        });
-    });
-{% endblock js %}
+    <div class="addIngrediente">
+        <form id="formAdd">{% csrf_token %}
+            <label for="nome_ingrediente">Nome Ingrediente:</label><br>
+            <input type="text" id="nome_ingrediente" name="nome_ingrediente" value=""><br>
+            <label for="euro_kg">Euro/Kg:</label><br>
+            <input type="number" step="0.1" id="euro_kg" name="euro_kg" value=""><br><br>
+            <input type="submit" value="Aggiungi">
+        </form>
+        <!--<button value="name" onclick="addIngrediente()">+</button>-->
+        <p id="log"></p>
+    </div>
+{% endblock page_content %}

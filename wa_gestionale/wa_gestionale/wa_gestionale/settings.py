@@ -56,7 +56,7 @@ ROOT_URLCONF = 'wa_gestionale.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': ["wa_gestionale/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

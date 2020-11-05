@@ -1,8 +1,9 @@
-{% extends "menu/base.html" %}
-{% block head_title %}Lista Menu{% endblock head_title %}
+{% extends "base.html" %}
 
-{% block content %}
-   <ul>
+{% block head_title%}Lista Piatti{% endblock head_title %}
+
+{% block page_content %}
+    <ul>
         {% for object in object_list %}
         <li><b>{{object.0}}</b> <a href="{{object.0.url_ricetta}}">{{object.0.url_ricetta}}</a></li>
         <ul>
@@ -12,4 +13,4 @@
         </ul>
         {% endfor %}
     </ul>
-{% endblock content %}
+{% endblock page_content %}

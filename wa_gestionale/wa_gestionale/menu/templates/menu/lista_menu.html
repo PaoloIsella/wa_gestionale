@@ -1,10 +1,11 @@
-{% extends "menu/base.html" %}
-{% block head_title %}Lista Menu{% endblock head_title %}
+{% extends "base.html" %}
 
-{% block content %}
+{% block head_title %}Lista Menu{% endblock head_title%}
+
+{% block page_content %}
     <ul>
         {% for object in object_list %}
             <li><b><a href="dettaglio_menu/{{object.pk}}/">{{ object.nome }}</a></b></li>
         {% endfor %}
     </ul>
-{% endblock content %}
+{% endblock page_content %}

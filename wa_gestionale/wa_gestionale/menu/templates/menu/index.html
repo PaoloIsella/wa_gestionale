@@ -1,10 +1,9 @@
-{% extends "menu/base.html" %}
-{% block head_title %}index{% endblock head_title %}
+{% extends "base.html" %}
 
-{% block content %}
-<ul>
-    <li><a href="lista_menu/">visualizza lista menu</a></li>
-    <li><a href="lista_piatti/">visualizza elenco piatti</a></li>
-    <li><a href="lista_ingredienti/">visualizza elenco ingredienti</a></li>
-</ul>
-{% endblock content %}
+{% block page_content %}
+    <ul>
+        <li><a href="lista_menu/">visualizza lista menu</a></li>
+        <li><a href="lista_piatti/">visualizza elenco piatti</a></li>
+        <li><a href="lista_ingredienti/">visualizza elenco ingredienti</a></li>
+    </ul>
+{% endblock page_content %}
